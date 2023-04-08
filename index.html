@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> LOFI DREAMERS </title>
+    <meta name="description" content= "LOFI DREAMERS!">
+    <meta property="og:image" content="/img/other_tag.jpg">
+    <link rel="stylesheet" href="css/css-style.css">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <link rel="icon" href="./icon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__row">
+
+                    <div class="header__logo">
+                        <a href="https://opensea.io/collection/lofidreamers" target="_blank"><img src="images/img-logo.png" alt="logo site"></a>
+                    </div>
+
+                    <div class="header__center">
+                        <a href="https://etherscan.io/address/0xfa1d36C234306c6eb273c3Cd30A159BA899982b9" target="_blank" class="head-etherscan"></a>
+                        <a href="https://opensea.io/collection/lofidreamers" target="_blank" class="head-opensea"></a>
+                        <a href="https://twitter.com/lofidreamers" target="_blank" class="head-twitter"></a>
+                    </div>
+
+                    <div class="header__right">
+                        <button class="btn-head" id="wl_check"> CHECK WHITELIST </button>
+                        <button class="btn-head" id="connect_button"> Connect wallet </button>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        
+        <div class="main">
+            <div class="container">
+                <div class="main__row">
+                    <div class="main__left">
+
+                        <p class="form-text2"> TOTAL MINTED </p> 
+                        <p class="number" id="tokens_available"> CONNECT </p> 
+                        <p class="form-text" id="phase"> MINT PHASE | MAX 5 PER WALLET </p> 
+                        <p class="form-text" id="price"> WL 1 FREE, THEN 0.0097Ξ EACH </p> <br>
+
+                        <div class="form-row">
+                            
+                            <div class="form-row-amount">
+                                <button class="btn-2" id="mintDW" onClick="decrementMintAmount()"> - </button>
+                                    <input type="text" placeholder="amount" class="in-form js-in-number" id="tokens_amount">
+                                <button class="btn-2" id="mintUP" onClick="incrementMintAmount()"> + </button>
+                            </div>
+                            
+
+                            <div class="form-row-mint">
+                                <button class="btn-form" id="mint_button"> Mint </button>
+                                <button class="btn-form2" id="mint_free"> FREE </button>
+                            </div>
+                            
+                        </div><br>
+                        
+                        <div class="form-row-text">
+                            <div class="form-text">                        
+                                <p> Lofi beats + retro anime avatars.
+                                    <br>
+                                    <br>
+                                    Nostalgia made tangible. </p>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="main__right"> <img src="images/sneak.PNG"> </div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__row">
+                    <div class="text-center copyright">
+                        <span> © 2023 LOFI DREAMERS by studio/AYA. All rights reserved </span>
+                      </div>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+	<script src="js/dist-web3.min.js"></script>
+    <script src="js/7663-js-sale.js"></script>
+    <script src="js/8305-js-main.js"></script></body>
+
+</html>
