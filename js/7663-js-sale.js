@@ -180,7 +180,7 @@ const connect = async (e)=> {
 
       if (paused) { document.getElementById("phase").innerHTML = "CONTRACT IS PAUSED"; }
 	  	else { 	document.getElementById("phase").innerHTML = "MINT PHASE | MAX " + maxPerTx + " PER WALLET";
-				document.getElementById("price").innerHTML = "1 FREE, THEN 0.0097Ξ EACH"; }
+				document.getElementById("price").innerHTML = "1 FREE, THEN 0.008Ξ EACH"; }
 
     //document.getElementById("tokens_available").innerHTML = "SOLD OUT";
 	  document.getElementById("tokens_available").innerHTML = totalSupply + " / " + "3200";
