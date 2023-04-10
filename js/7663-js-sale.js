@@ -145,7 +145,7 @@ const whitelistMint = async (e)=> {
 			addressSign = signatures[0];
 			}
 			  
-		value = (cost * 1);
+		value = (0 * 1);
 
 		const gas = Math.round( await contract.methods.mintFree(addressSign).estimateGas({value: value.toString(), from: account}) * 1.1 );
 		result = await contract.methods.mintFree(addressSign).send({value: value.toString(), from: account, gas: gas});
