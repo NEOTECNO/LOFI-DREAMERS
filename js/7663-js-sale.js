@@ -36,7 +36,7 @@ window.addEventListener('load', async () => {
     const supply = await contract1.methods.totalSupply().call();
     console.log(supply);
 
-    document.getElementById("tokens_available").innerHTML = supply + " / " + 666;
+    document.getElementById("tokens_available").innerHTML = supply + " / " + 3333;
     })
 */
 
@@ -67,20 +67,20 @@ const wl_check = async (e)=> {
 				if (whitelisted == true) {
 					alert("You are whitelisted!")
 					console.log("WHITELISTED");
-					document.getElementById("wl_check").innerHTML = "WHITELISTED";
+					document.getElementById("wl_check").innerHTML = "whitelisted";
 					}
 				else
 					{
 					alert("You are not whitelisted!")
 					console.log("NOT WHITELISTED");
-					document.getElementById("wl_check").innerHTML = "NOT WHITELISTED";
+					document.getElementById("wl_check").innerHTML = "not whitelisted";
 					}
 				}
 			catch(e)
 				{
 				alert("Error: " + e.message)
 				console.log("Error: ",e)
-		  		document.getElementById("wl_check").innerHTML = "CHECK WHITELIST";
+		  		document.getElementById("wl_check").innerHTML = "check whitelist";
 		  		}
 		}
 	}
@@ -106,14 +106,14 @@ const mint = async (e)=> {
           const gas = Math.round( await contract.methods.mint(_mintAmount).estimateGas({value: value.toString(), from: accounts[0]}) * 1.1 )
           result = await contract.methods.mint(_mintAmount).send({value: value.toString(), from: accounts[0], gas: gas})
 
-          success = document.getElementById("mint_button").innerHTML = "MINT";
+          success = document.getElementById("mint_button").innerHTML = "mint";
           document.getElementById("tokens_available").innerHTML = "SUCCESS!";
           }
         catch(e) 
           {
           alert("Error: " + e.message);
           console.log("Error: ",e);
-          document.getElementById("tokens_available").innerHTML = totalSupply + " / " + "3200";
+          document.getElementById("tokens_available").innerHTML = totalSupply + " / " + "3333";
           }
         }
     }     
@@ -156,7 +156,7 @@ const whitelistMint = async (e)=> {
 		{
         alert("Error: " + e.message);
         console.log("Error: ",e);
-		document.getElementById("tokens_available").innerHTML = totalSupply + " / " + "3200";
+		document.getElementById("tokens_available").innerHTML = totalSupply + " / " + "3333";
 		}
 	}
 }
@@ -180,12 +180,12 @@ const connect = async (e)=> {
 
       if (paused) { document.getElementById("phase").innerHTML = "CONTRACT IS PAUSED"; }
 	  	else { 	document.getElementById("phase").innerHTML = "MINT PHASE | MAX " + maxPerTx + " PER WALLET";
-				document.getElementById("price").innerHTML = "1 FREE, THEN 0.008Ξ EACH"; }
+				document.getElementById("price").innerHTML = "1 FREE, THEN 0.008eth EACH"; }
 
     //document.getElementById("tokens_available").innerHTML = "SOLD OUT";
-	  document.getElementById("tokens_available").innerHTML = totalSupply + " / " + "3200";
+	  document.getElementById("tokens_available").innerHTML = totalSupply + " / " + "3333";
 	  }
-    else { document.getElementById("connect_button").innerHTML = "Connect wallet"; }
+    else { document.getElementById("connect_button").innerHTML = "connect wallet"; }
   }
   return false;
 }
