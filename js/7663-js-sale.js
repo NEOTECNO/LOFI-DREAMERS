@@ -4,7 +4,7 @@ const abi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{
 
 var contract = null;
 var account = null;
-var freeMint = "";
+var addressMintedBalance = null;
 
 var totalSupply = null;
 var maxSupply = null;
@@ -25,11 +25,14 @@ const decrementMintAmount = async (e) => {
   document.getElementById('tokens_amount').value = newMintAmount;
 
   costMath = String((cost / 1e18));
+  costFinal = newMintAmount * costMath;
 
-  if (freeMint) {
-  	document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + " + (newMintAmount) * costMath + "eth";
+  if (amount >= 1) {
+  if (addressMintedBalance < 1) {
+  	document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + " + (costFinal - costMath) + "eth";
   } else {
-	document.getElementById("cost").innerHTML = "TOTAL COST: " + (newMintAmount) * costMath + "eth";
+	document.getElementById("cost").innerHTML = "TOTAL COST: " + newMintAmount * costMath + "eth";
+  }
   }
 };
 
@@ -43,12 +46,15 @@ const incrementMintAmount = async (e) => {
   document.getElementById('tokens_amount').value = newMintAmount;
 
   costMath = String((cost / 1e18));
+  costFinal = newMintAmount * costMath;
 
-  if (freeMint) {
-	document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + " + (newMintAmount) * costMath + "eth";
+  if (amount >= 1) {
+  if (addressMintedBalance < 1) {
+	document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + " + (costFinal - costMath) + "eth";
 	} else {
-  	document.getElementById("cost").innerHTML = "TOTAL COST: " + (newMintAmount) * costMath + "eth";
+  	document.getElementById("cost").innerHTML = "TOTAL COST: " + newMintAmount * costMath + "eth";
 	}
+  }
 };
 
 /*
@@ -198,7 +204,8 @@ const whitelistMint = async (e)=> {
 const connect = async (e)=> {
   if (typeof window.ethereum !== 'undefined') {
     console.log('MetaMask is installed!');
-    const account = await window.ethereum.request({ method: 'eth_requestAccounts' })
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+	account = accounts[0];
     
     if (account.length > 0) {
     	document.getElementById("connect_button").innerHTML = account[0].substr(0,10) + "..." + account[0].substr(-4) ;
@@ -210,7 +217,7 @@ const connect = async (e)=> {
 		const paused = await contract.methods.paused().call();
 		maxPerTx = await contract.methods.maxPerTx().call();
 		cost = await contract.methods.cost().call();
-		freeMint = await contract.methods.freeMintClaimed(account);
+		addressMintedBalance = await contract.methods.balanceOf(account).call();
 
       if (!paused) { document.getElementById("phase").innerHTML = "CONTRACT IS PAUSED"; }
 		else { 	document.getElementById("phase").innerHTML = "MINT PHASE | MAX " + maxPerTx + " PER WALLET";
@@ -219,7 +226,7 @@ const connect = async (e)=> {
     //document.getElementById("tokens_available").innerHTML = "SOLD OUT";
 	  document.getElementById("tokens_available").innerHTML = totalSupply + " / " + "3333";
 
-	  if (freeMint) {
+	  if (addressMintedBalance < 1) {
 		document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + 0.00eth";
 	  } else {
 		document.getElementById("cost").innerHTML = "TOTAL COST: 0.00eth";
