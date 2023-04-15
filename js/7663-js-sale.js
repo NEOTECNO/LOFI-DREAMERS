@@ -207,10 +207,10 @@ const connect = async (e)=> {
   if (typeof window.ethereum !== 'undefined') {
     console.log('MetaMask is installed!');
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-	account = accounts[0];
+    account = accounts[0];
     
     if (account.length > 0) {
-    	document.getElementById("connect_button").innerHTML = account[0].substr(0,10) + "..." + account[0].substr(-4) ;
+    	document.getElementById("connect_button").innerHTML = accounts[0].substr(0,10) + "..." + accounts[0].substr(-4) ;
 
   		const web3 = new Web3(window.ethereum);
   		const contract = new web3.eth.Contract(abi, CONTRACT_ADDR, {gas: 3000000});
