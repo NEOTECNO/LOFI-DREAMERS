@@ -220,7 +220,7 @@ const connect = async (e)=> {
 		addressMintedBalance = await contract.methods.balanceOf(account).call();
 
       if (paused) { document.getElementById("phase").innerHTML = "CONTRACT IS PAUSED"; }
-		else { 	document.getElementById("phase").innerHTML = "MINT PHASE | MAX " + maxPerTx + " PER WALLET";
+		else { 	document.getElementById("phase").innerHTML = "PUBLIC MINT PHASE | MAX " + maxPerTx + " PER WALLET";
 		document.getElementById("price").innerHTML = "1 FREE, THEN 0.0059eth EACH"; }
 
     //document.getElementById("tokens_available").innerHTML = "SOLD OUT";
