@@ -10,6 +10,7 @@ var totalSupply = null;
 var maxSupply = null;
 var maxPerTx = null;
 var cost = null;
+var value = null;
 
 var amount = null;
 var newMintAmount = null;
@@ -124,8 +125,14 @@ const mint = async (e)=> {
           const web3 = new Web3(window.ethereum);
           const contract = new web3.eth.Contract(abi, CONTRACT_ADDR, {gas: 3000000});
 
-          const cost = await contract.methods.cost().call()
-          const value = (cost * _mintAmount)
+          const cost = await contract.methods.cost().call();
+		  freeMint = await contract.methods.freeMintClaimed(account);
+
+		  if (freeMint) {
+			value = (cost * _mintAmount) - cost;
+		  } else {
+			value = cost * _mintAmount;
+		  }
 
           const gas = Math.round( await contract.methods.mint(_mintAmount).estimateGas({value: value.toString(), from: accounts[0]}) * 1.1 )
           result = await contract.methods.mint(_mintAmount).send({value: value.toString(), from: accounts[0], gas: gas})
