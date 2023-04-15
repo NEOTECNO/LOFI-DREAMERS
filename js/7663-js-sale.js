@@ -129,9 +129,9 @@ const mint = async (e)=> {
 		  freeMint = await contract.methods.freeMintClaimed(account);
 
 		  if (freeMint) {
-			value = (cost * _mintAmount) - cost;
-		  } else {
 			value = cost * _mintAmount;
+		  } else {
+			value = (cost * _mintAmount) - cost;
 		  }
 
           const gas = Math.round( await contract.methods.mint(_mintAmount).estimateGas({value: value.toString(), from: accounts[0]}) * 1.1 )
