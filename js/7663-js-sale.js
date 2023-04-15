@@ -219,7 +219,7 @@ const connect = async (e)=> {
 		cost = await contract.methods.cost().call();
 		addressMintedBalance = await contract.methods.balanceOf(account).call();
 
-      if (!paused) { document.getElementById("phase").innerHTML = "CONTRACT IS PAUSED"; }
+      if (paused) { document.getElementById("phase").innerHTML = "CONTRACT IS PAUSED"; }
 		else { 	document.getElementById("phase").innerHTML = "MINT PHASE | MAX " + maxPerTx + " PER WALLET";
 		document.getElementById("price").innerHTML = "1 FREE, THEN 0.0059eth EACH"; }
 
