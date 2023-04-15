@@ -24,12 +24,13 @@ const decrementMintAmount = async (e) => {
   }
   document.getElementById('tokens_amount').value = newMintAmount;
 
-  costMath = String((cost / 1e18));
+  costMath = String(cost / 1e18);
   costFinal = newMintAmount * costMath;
+  costFinal2 = String(costFinal - costMath);
 
   if (amount >= 1) {
   if (addressMintedBalance < 1) {
-  	document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + " + (costFinal - costMath) + "eth";
+  	document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + " + costFinal2.substr(0,6) + "eth";
   } else {
 	document.getElementById("cost").innerHTML = "TOTAL COST: " + newMintAmount * costMath + "eth";
   }
@@ -45,12 +46,13 @@ const incrementMintAmount = async (e) => {
   }
   document.getElementById('tokens_amount').value = newMintAmount;
 
-  costMath = String((cost / 1e18));
+  costMath = String(cost / 1e18);
   costFinal = newMintAmount * costMath;
+  costFinal2 = String(costFinal - costMath);
 
   if (amount >= 1) {
   if (addressMintedBalance < 1) {
-	document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + " + (costFinal - costMath) + "eth";
+	document.getElementById("cost").innerHTML = "TOTAL COST: 1 FREE + " + costFinal2.substr(0,6) + "eth";
 	} else {
   	document.getElementById("cost").innerHTML = "TOTAL COST: " + newMintAmount * costMath + "eth";
 	}
@@ -220,7 +222,7 @@ const connect = async (e)=> {
 		addressMintedBalance = await contract.methods.balanceOf(account).call();
 
       if (paused) { document.getElementById("phase").innerHTML = "CONTRACT IS PAUSED"; }
-		else { 	document.getElementById("phase").innerHTML = "PUBLIC MINT PHASE | MAX " + maxPerTx + " PER WALLET";
+		else { 	document.getElementById("phase").innerHTML = "MINT PHASE | MAX " + maxPerTx + " PER WALLET";
 		document.getElementById("price").innerHTML = "1 FREE, THEN 0.0059eth EACH"; }
 
     //document.getElementById("tokens_available").innerHTML = "SOLD OUT";
